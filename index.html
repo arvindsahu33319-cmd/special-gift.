@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mere Dil Ki Baat ❤️</title>
+    <style>
+        body { margin: 0; padding: 0; background: #000; overflow: hidden; font-family: 'Arial', sans-serif; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .container { text-align: center; color: white; z-index: 10; display: none; padding: 20px; }
+        h1 { color: #ff4d6d; font-size: 3rem; text-shadow: 0 0 20px #ff4d6d; margin-bottom: 10px; }
+        .kiss-anim { font-size: 80px; animation: bounce 1.2s infinite; margin-bottom: 20px; }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        .heart { position: absolute; color: #ff4d6d; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        #startBtn { padding: 20px 40px; font-size: 1.5rem; background: #ff4d6d; border: none; border-radius: 50px; color: white; cursor: pointer; box-shadow: 0 0 20px #ff4d6d; font-weight: bold; }
+        p { font-style: italic; font-size: 1.2rem; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <button id="startBtn">Click for Surprise 💖</button>
+
+    <div class="container" id="mainBody">
+        <div class="kiss-anim">💏</div>
+        <h1>I Love You So Much! ❤️</h1>
+        <p>"Jab se tum mile ho, <br> Meri duniya badal gayi hai... <br> Will you be mine forever?"</p>
+        <div style="font-size: 40px; margin-top: 20px;">💍🌹✨</div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const btn = document.getElementById('startBtn');
+        const body = document.getElementById('mainBody');
+        const music = document.getElementById('bgMusic');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-10%';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        btn.onclick = function() {
+            music.play().catch(e => console.log("Music blocked by browser"));
+            btn.style.display = 'none';
+            body.style.display = 'block';
+            setInterval(createHeart, 250);
+        };
+    </script>
+</body>
+</html>
